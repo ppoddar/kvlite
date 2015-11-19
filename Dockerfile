@@ -1,6 +1,6 @@
-# ---------------------------------------------
+# -------------------------------------------------------------
 # Builds Oracle NOSQL database Image
-# 
+# -------------------------------------------------------------
 # Main Steps:
 #   -- Downloads Community Edition from OTN site
 #   -- Unpacks the libraries
@@ -17,8 +17,9 @@ ENV DOWNLOAD_LINK=$DOWNLOAD_ROOT/kv-ce-3.4.7.zip
 RUN wget -v $DOWNLOAD_LINK
 RUN unzip kv-ce-3.4.7.zip kv-3.4.7/lib/
 
-COPY $UNZIP_DIR/* /lib/
 
 EXPOSE 5000
 EXPOSE 5001
-CMD ["java", "-jar", "lib/kvstore.jar", "kvlite", "-host", "localhost", "-port", "5000"]
+
+
+CMD ["java", "-jar", "kv-3.4.7/lib/kvstore.jar", "kvlite", "-host", "localhost", "-port", "5000"]
