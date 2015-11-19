@@ -15,7 +15,7 @@ ENV DOWNLOAD_LINK=$DOWNLOAD_ROOT/kv-ce-3.4.7.zip
 
 
 RUN wget -v $DOWNLOAD_LINK
-RUN unzip kv-ce-3.4.7.zip kv-3.4.7/lib/
+RUN unzip kv-ce-3.4.7.zip
 
 
 EXPOSE 5000
