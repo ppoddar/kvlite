@@ -8,18 +8,17 @@
 # -------------------------------------------------------------
 FROM java
 
+ENV KV_VERSION 3.4.7 
 ENV DOWNLOAD_ROOT http://download.oracle.com/otn-pub/otn_software/nosql-database
-# ENV KV_VESRION 3.4.7 -- variable substitution in ENV varaiables is not supported
-#                                     -- Otherwise thhis version variable should be used
-ENV DOWNLOAD_LINK=$DOWNLOAD_ROOT/kv-ce-3.4.7.zip
+ENV DOWNLOAD_FILE kv-ce-$KV_VERSION.zip
+ENV DOWNLOAD_LINK  $DOWNLOAD_ROOT/$DOWNLOAD_FILE
+ENV UNZIPPED_LIB  kv-$KV_VERSION/lib
 
-
-RUN wget -v $DOWNLOAD_LINK
-RUN unzip kv-ce-3.4.7.zip
+RUN wget  $DOWNLOAD_LINK
+RUN unzip $DOWNLOAD_FILE $UNZIPPED_LIB/* 
 
 
 EXPOSE 5000
 EXPOSE 5001
-
 
 CMD ["java", "-jar", "kv-3.4.7/lib/kvstore.jar", "kvlite", "-host", "localhost", "-port", "5000"]
